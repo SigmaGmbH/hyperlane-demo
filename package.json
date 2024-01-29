@@ -2,6 +2,7 @@
   "name": "demo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sigmagmbh.github.io/hyperlane-demo/",
   "dependencies": {
     "@swisstronik/swisstronik.js": "^1.0.0",
     "@swisstronik/utils": "^1.1.1",
