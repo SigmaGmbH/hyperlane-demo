@@ -32,7 +32,7 @@ function App() {
   const incrementCounter = async () => {
     try {
       const signer = metamaskProvider.getSigner()
-      const res = await incrementSwisstronikCounter(signer)
+      await incrementSwisstronikCounter(signer)
       setTxProcessing(true)
     } catch (error) {
       console.error('Cannot increment counter in Swisstronik contract. Reason: ', error)
@@ -46,7 +46,7 @@ function App() {
     if (window.ethereum) {
       // Connect MetaMask to page
       const res = await window.ethereum.request({ method: "eth_requestAccounts" })
-      if (res.length == 0) {
+      if (res.length === 0) {
         return
       }
 
