@@ -1,0 +1,38 @@
+name: Deploy hyperlane demo to GitHub Pages
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build & deploy pages
+    runs-on: ubuntu-latest
+    permissions: write-all
+    environment: production
+
+    steps:
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v4
+
+      - name: 'Extend memory'
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=16384"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+
+      - name: Deploy landing to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            personal_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_branch: gh-pages
+            publish_dir: ./build
